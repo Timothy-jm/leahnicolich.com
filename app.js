@@ -104,33 +104,8 @@ const collectionCard = (slug, image, number) => `
 const renderHome = () => {
   document.title = 'Leah Nicolich — Artist';
   content.innerHTML = `
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Long Island, New York</p>
-        <h1>Leah<br>Nicolich</h1>
-        <p class="hero-intro">Paintings, drawings, and sculpture exploring the quiet physical language of internal struggle.</p>
-        <a class="text-link" href="#/paintings">View selected work <span aria-hidden="true">→</span></a>
-      </div>
-      <figure class="hero-art">
-        <img src="assets/images/home/hero.jpg" alt="A sculptural arrangement of hands by Leah Nicolich">
-      </figure>
-    </section>
-    <section class="collections-section" aria-labelledby="work-title">
-      <div class="section-heading">
-        <p class="eyebrow">Selected work</p>
-        <h2 id="work-title">The work</h2>
-      </div>
-      <div class="collection-list">
-        ${collectionCard('paintings', 'assets/images/paintings/monday-300am.jpg', '01')}
-        ${collectionCard('drawings', 'assets/images/drawings/drawn-hand-17.jpg', '02')}
-        ${collectionCard('sculptures', 'assets/images/sculptures/march-11-top.jpg', '03')}
-        ${collectionCard('past-projects', 'assets/images/past/neighbors-night.jpg', '04')}
-      </div>
-    </section>
-    <section class="home-about">
-      <p class="eyebrow">Artist statement</p>
-      <p class="home-quote">“I display emotional tensions in a physical experience.”</p>
-      <a class="text-link" href="#/about">Read about the work <span aria-hidden="true">→</span></a>
+    <section class="home-splash">
+      <img src="assets/images/home/hero.jpg" alt="A sculptural arrangement of hands by Leah Nicolich">
     </section>`;
 };
 
@@ -145,15 +120,7 @@ const renderGallery = (slug) => {
       <span class="artwork-caption"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.details)}</span></span>
     </button>`).join('');
 
-  content.innerHTML = `
-    <section class="page-shell">
-      <header class="page-intro">
-        <p class="eyebrow">${collection.eyebrow}</p>
-        <h1>${collection.title}</h1>
-        <p>${collection.intro}</p>
-      </header>
-      <div class="artwork-grid">${cards}</div>
-    </section>`;
+  content.innerHTML = `<section class="gallery-page" aria-label="${collection.title}"><h1 class="sr-only">${collection.title}</h1><div class="artwork-grid">${cards}</div></section>`;
 
   content.querySelectorAll('[data-image-index]').forEach((button) => {
     button.addEventListener('click', () => openLightbox(Number(button.dataset.imageIndex)));
@@ -302,6 +269,8 @@ const updateNavigation = (route) => {
 
 const route = () => {
   const path = (location.hash.slice(1) || '/').replace(/\/+$/, '') || '/';
+  document.body.classList.remove('route-home', 'route-interior');
+  document.body.classList.add(path === '/' ? 'route-home' : 'route-interior');
   if (path === '/') renderHome();
   else if (collections[path.slice(1)]) renderGallery(path.slice(1));
   else if (path === '/about' || path === '/artist-statement' || path === '/exhibitions') renderAbout();
