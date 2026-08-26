@@ -8,4 +8,4 @@ Serve the repository root with any static file server, then open `index.html` th
 
 ## Contact form
 
-Set `contactEmail` at the top of `app.js` before launch. The form prepares a message in the visitor's email application; no form data is stored by the site.
+The form prepares a message to `leahnicolich@gmail.com` in the visitor's email application; no form data is stored by the site.

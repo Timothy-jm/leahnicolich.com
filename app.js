@@ -1,4 +1,4 @@
-const contactEmail = '';
+const contactEmail = 'leahnicolich@gmail.com';
 
 const artwork = (folder, entries) => entries.map(([file, title, details]) => ({
   src: `assets/images/${folder}/${file}`,
