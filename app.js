@@ -81,6 +81,9 @@ const menuToggle = document.querySelector('.menu-toggle');
 const lightbox = document.querySelector('.lightbox');
 const lightboxImage = lightbox.querySelector('img');
 const lightboxCaption = lightbox.querySelector('figcaption');
+const viewerMeta = document.querySelector('.viewer-meta');
+const viewerTitle = viewerMeta.querySelector('.viewer-title');
+const viewerDetails = viewerMeta.querySelector('.viewer-details');
 let activeGallery = [];
 let activeIndex = 0;
 
@@ -127,38 +130,31 @@ const renderGallery = (slug) => {
   });
 };
 
-const renderAbout = () => {
-  document.title = 'About — Leah Nicolich';
+const renderArtistStatement = () => {
+  document.title = 'Artist Statement — Leah Nicolich';
   content.innerHTML = `
-    <section class="page-shell about-page">
-      <header class="page-intro about-intro">
-        <p class="eyebrow">Artist statement</p>
-        <h1>Making the<br>invisible visible.</h1>
-      </header>
-      <div class="statement-grid">
-        <div class="statement-copy">
-          <p>My current work is about internal struggles, inspired in a large part from my own struggle with generalized anxiety disorder. It’s exhausting trying to constantly change things that can’t be changed, and the silent fights I have go unseen. The battle with anxiety isn’t the only focus of my work, but these helpless, quiet struggles people endure are.</p>
-          <p>To illustrate my point, I display emotional tensions in a physical experience. Paintings have hands gripping at body parts, trying to pointlessly change the skin. Sculptures are flexed miniature hands clustered in a pile. In these works, each hand is contorted in its own position to represent a different moment of trouble, with the intent to demonstrate how quickly that pile can become suffocating.</p>
-          <p>What has me fascinated about this topic is the odd balance between frantic tension and overwhelming defeat that people experience during mental struggles. I prefer to work small because I believe there is an intimacy with objects that can fit in your hand. My work is made to be approachable, with the aim for people to find relief in having their troubles physically represented.</p>
-        </div>
-        <div class="statement-images" aria-label="Studio and process images">
-          <img src="assets/images/statement/statement-1.jpg" alt="Detail from Leah Nicolich's art practice" loading="lazy">
-          <img src="assets/images/statement/statement-3.jpg" alt="Artwork detail by Leah Nicolich" loading="lazy">
-          <img src="assets/images/statement/statement-7.jpg" alt="Sculptural work by Leah Nicolich" loading="lazy">
-        </div>
+    <section class="statement-page">
+      <div class="statement-gallery" aria-label="Selected artwork details">
+        ${[1, 2, 3, 4, 5, 6, 7].map((number) => `<img src="assets/images/statement/statement-${number}.jpg" alt="Artwork detail ${number} by Leah Nicolich" loading="lazy">`).join('')}
       </div>
-      <div class="cv-section">
-        <div>
-          <p class="eyebrow">Biography</p>
-          <h2>Long Island, New York.<br>Lives and works in New York.</h2>
-        </div>
-        <div class="cv-list">
-          <section><h3>Education</h3><p>Adelphi University, Garden City, NY<br><span>BFA Studio Art, Art History Minor</span></p></section>
-          <section><h3>Selected exhibitions</h3><div><p><strong>2016</strong> Senior Art Exhibition; Pop Swap — Adelphi University Galleries, Garden City, NY.</p><p><strong>2015</strong> Let Them Eat Cake; Pop Swap; Photo Annual — Adelphi University Galleries, Garden City, NY.</p><p><strong>2014</strong> The Brooks-lyn Experiment — Postmark Café, Brooklyn, NY; Pop Swap — Adelphi University Galleries.</p></div></section>
-          <section><h3>Awards</h3><div><p><strong>2016</strong> President Annual Purchase Prize; A. Conger Goodyear Award — Adelphi University.</p><p><strong>2015</strong> Photo Annual Award — Adelphi University.</p></div></section>
-          <section><h3>Collection</h3><p>Adelphi University, Garden City, NY.</p></section>
-        </div>
+      <div class="statement-copy">
+        <p>My current work is about internal struggles, inspired in a large part from my own struggle with generalized anxiety disorder. It’s exhausting trying to constantly change things that can’t be changed, and the silent fights I have go unseen. The battle with anxiety isn’t the only focus of my work, but these helpless, quiet struggles people endure are.</p>
+        <p>To illustrate my point, I display emotional tensions in a physical experience. Paintings have hands gripping at body parts, trying to pointlessly change the skin. Sculptures are flexed miniature hands clustered in a pile. In these works, each hand is contorted in its own position to represent a different moment of trouble, with the intent to demonstrate how quickly that pile can become suffocating.</p>
+        <p>What has me fascinated about this topic is the odd balance between frantic tension and overwhelming defeat that people experience during mental struggles. I prefer to work small because I believe there is an intimacy with objects that can fit in your hand. My work is made to be approachable, with the aim for people to find relief in having their troubles physically represented.</p>
       </div>
+    </section>`;
+};
+
+const renderExhibitions = () => {
+  document.title = 'Exhibitions — Leah Nicolich';
+  content.innerHTML = `
+    <section class="exhibitions-page">
+      <section><h1>Born</h1><p>Long Island, New York. Lives and works in New York.</p></section>
+      <section><h2>Education</h2><p><em>Adelphi University</em>, Garden City, NY [BFA Studio Art, Art History Minor]</p></section>
+      <section><h2>Selected Exhibitions</h2><p>2016</p><p><em>Senior Art Exhibition</em>, Adelphi University Galleries, Garden City, NY.</p><p><em>Pop Swap</em>, Adelphi University Galleries, Garden City, NY.</p><p>2015</p><p><em>Let Them Eat Cake</em>, Adelphi University Galleries, Garden City, NY.</p><p><em>Pop Swap</em>, Adelphi University Galleries, Garden City, NY.</p><p><em>Photo Annual</em>, Adelphi University Galleries, Garden City, NY.</p><p>2014</p><p><em>The Brooks-lyn Experiment</em>, Postmark Café, Brooklyn, NY.</p><p><em>Pop Swap</em>, Adelphi University Galleries, Garden City, NY.</p></section>
+      <section><h2>Awards</h2><p>2016</p><p><em>President Annual Purchase Prize</em>, Adelphi University, Garden City, NY.</p><p><em>A. Conger Goodyear Award</em>, Adelphi University, Garden City, NY.</p><p>2015</p><p><em>Photo Annual Award</em>, Adelphi University, Garden City, NY.</p></section>
+      <section><h2>Private Collections</h2><p>Adelphi University, Garden City, NY.</p></section>
+      <section><h2>Bibliography</h2><p>Demaio, Mary. “<em>Watch the 2016 Adelphi University Pulse Cover Chalk Up</em>,” Pulse, September 29, 2016.</p><p>Wilson, Sam. “<em>Internal Struggles: Making the Invisible Visible</em>,” Odyssey, May 7, 2016. New York.</p></section>
     </section>`;
 };
 
@@ -193,13 +189,12 @@ const renderContact = () => {
   document.title = 'Contact — Leah Nicolich';
   content.innerHTML = `
     <section class="page-shell contact-page">
-      <div class="contact-copy"><p class="eyebrow">Get in touch</p><h1>Contact</h1><p>For exhibition, collection, or general inquiries, send Leah a note.</p><div class="contact-socials"><a href="https://www.instagram.com/leahnicolich/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/in/leah-nicolich-11a26582/" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
       <form class="contact-form" id="contact-form">
-        <div class="field-row"><div class="field"><label for="first-name">First name</label><input id="first-name" name="firstName" autocomplete="given-name" required></div><div class="field"><label for="last-name">Last name</label><input id="last-name" name="lastName" autocomplete="family-name" required></div></div>
+        <fieldset class="name-field"><legend>Name</legend><div class="field-row"><div class="field"><label for="first-name">First name</label><input id="first-name" name="firstName" autocomplete="given-name" required></div><div class="field"><label for="last-name">Last name</label><input id="last-name" name="lastName" autocomplete="family-name" required></div></div></fieldset>
         <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="subject">Subject</label><input id="subject" name="subject" required></div>
         <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-        <button class="submit-button" type="submit">Prepare email</button><p class="form-status" id="form-status" aria-live="polite"></p>
+        <button class="submit-button" type="submit">Submit</button><p class="form-status" id="form-status" aria-live="polite"></p>
       </form>
     </section>`;
   content.querySelector('#contact-form').addEventListener('submit', handleContactSubmit);
@@ -226,8 +221,9 @@ const renderNotFound = () => {
 const openLightbox = (index) => {
   activeIndex = index;
   updateLightbox();
-  lightbox.showModal();
-  document.body.classList.add('is-locked');
+  lightbox.show();
+  viewerMeta.hidden = false;
+  document.body.classList.add('is-locked', 'is-viewing-artwork');
 };
 
 const updateLightbox = () => {
@@ -236,18 +232,31 @@ const updateLightbox = () => {
   lightboxImage.src = item.src;
   lightboxImage.alt = item.alt;
   lightboxCaption.innerHTML = `<strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.details)}</span>`;
+  viewerTitle.textContent = item.title;
+  viewerDetails.textContent = item.details;
 };
 
-const closeLightbox = () => { lightbox.close(); document.body.classList.remove('is-locked'); };
+const closeLightbox = () => {
+  lightbox.close();
+  viewerMeta.hidden = true;
+  document.body.classList.remove('is-locked', 'is-viewing-artwork');
+};
 const stepLightbox = (amount) => { activeIndex = (activeIndex + amount + activeGallery.length) % activeGallery.length; updateLightbox(); };
 
 lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
 lightbox.querySelector('.lightbox-previous').addEventListener('click', () => stepLightbox(-1));
 lightbox.querySelector('.lightbox-next').addEventListener('click', () => stepLightbox(1));
+viewerMeta.querySelector('.viewer-previous').addEventListener('click', () => stepLightbox(-1));
+viewerMeta.querySelector('.viewer-next').addEventListener('click', () => stepLightbox(1));
+viewerMeta.querySelector('.viewer-thumbnails').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
-lightbox.addEventListener('close', () => document.body.classList.remove('is-locked'));
+lightbox.addEventListener('close', () => {
+  viewerMeta.hidden = true;
+  document.body.classList.remove('is-locked', 'is-viewing-artwork');
+});
 document.addEventListener('keydown', (event) => {
   if (!lightbox.open) return;
+  if (event.key === 'Escape') closeLightbox();
   if (event.key === 'ArrowLeft') stepLightbox(-1);
   if (event.key === 'ArrowRight') stepLightbox(1);
 });
@@ -268,12 +277,14 @@ const updateNavigation = (route) => {
 };
 
 const route = () => {
+  if (lightbox.open) closeLightbox();
   const path = (location.hash.slice(1) || '/').replace(/\/+$/, '') || '/';
   document.body.classList.remove('route-home', 'route-interior');
   document.body.classList.add(path === '/' ? 'route-home' : 'route-interior');
   if (path === '/') renderHome();
   else if (collections[path.slice(1)]) renderGallery(path.slice(1));
-  else if (path === '/about' || path === '/artist-statement' || path === '/exhibitions') renderAbout();
+  else if (path === '/about' || path === '/artist-statement') renderArtistStatement();
+  else if (path === '/exhibitions') renderExhibitions();
   else if (path === '/news' || path === '/news/links') renderNews();
   else if (path === '/contact') renderContact();
   else renderNotFound();
